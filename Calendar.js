@@ -91,7 +91,8 @@ export default class Calendar extends React.Component {
 
 		this.changeSelection = this.changeSelection.bind(this);
 		this.generateMonths = this.generateMonths.bind(this);
-
+      this.scrollToBottom = this.scrollToBottom.bind(this);
+		
 		let {selectFrom, selectTo, monthsCount, startDate} = this.props;
 
 		this.selectFrom = selectFrom;

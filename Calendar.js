@@ -252,23 +252,23 @@ export default class Calendar extends React.Component {
 		return 'common';
 	}
    
-   scrollToBottom(animated = false) {
-      if (this.listHeight && this.footerY && this.footerY > this.listHeight) {
+   scrollToBottom = () => {
+      if (this.listHeight) {
          // Calculates the y scroll position inside the ListView
-         const scrollTo = this.footerY - this.listHeight
+         const scrollTo = this.listHeight;
          
          // Scroll that sucker!
          this.refs.listView.scrollTo({
             y: scrollTo,
-            animated: animated,
+            animated: false,
          })
       }
-   }
+   };
    
    onLayout = (event) => {
       const layout = event.nativeEvent.layout;
       this.listHeight = layout.height
-   }
+   };
 
 	render() {
 		let {style, isFutureDate} = this.props;
@@ -289,9 +289,6 @@ export default class Calendar extends React.Component {
 				style={[styles.listViewContainer, directionStyles, style]}
 				dataSource={this.state.dataSource}
             onLayout={this.onLayout}
-            onContentSizeChange={(contentWidth, contentHeight)=>{
-               this.refs.scrollView.scrollTo(contentHeight);
-            }}
 				renderRow={(month) => {
 					return (
 						<Month

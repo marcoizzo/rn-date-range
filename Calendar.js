@@ -253,21 +253,21 @@ export default class Calendar extends React.Component {
 	}
    
    scrollToBottom = () => {
+	   
       if (this.listHeight) {
          // Calculates the y scroll position inside the ListView
          const scrollTo = this.listHeight;
-         
-         // Scroll that sucker!
-         this.refs.listView.scrollTo({
-            y: scrollTo,
-            animated: false,
-         })
       }
    };
    
    onLayout = (event) => {
       const layout = event.nativeEvent.layout;
       this.listHeight = layout.height
+      // Scroll that sucker!
+      this.refs.listView.scrollTo({
+         y: layout.height,
+         animated: false,
+      })
    };
 
 	render() {

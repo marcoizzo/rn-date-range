@@ -282,7 +282,7 @@ export default class Calendar extends React.Component {
 
 		return (
 			<ListView
-            ref='listView'
+            ref={"listView"}
 				showsVerticalScrollIndicator={false}
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}

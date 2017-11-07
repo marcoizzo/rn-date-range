@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes  from 'prop-types';
 import {
 	ListView,
 	StyleSheet,
@@ -91,8 +91,7 @@ export default class Calendar extends React.Component {
 
 		this.changeSelection = this.changeSelection.bind(this);
 		this.generateMonths = this.generateMonths.bind(this);
-      this.scrollToBottom = this.scrollToBottom.bind(this);
-		
+
 		let {selectFrom, selectTo, monthsCount, startDate} = this.props;
 
 		this.selectFrom = selectFrom;
@@ -105,10 +104,6 @@ export default class Calendar extends React.Component {
 			dataSource: dataSource.cloneWithRows(this.months)
 		}
 	}
-   
-   componentDidMount () {
-      this.scrollToBottom()
-   }
 
 	rowHasChanged(r1, r2) {
 		for (var i = 0; i < r1.length; i++) {
@@ -251,24 +246,6 @@ export default class Calendar extends React.Component {
 		}
 		return 'common';
 	}
-   
-   scrollToBottom = () => {
-	   
-      if (this.listHeight) {
-         // Calculates the y scroll position inside the ListView
-         const scrollTo = this.listHeight;
-      }
-   };
-   
-   onLayout = (event) => {
-      const layout = event.nativeEvent.layout;
-      this.listHeight = layout.height
-      // Scroll that sucker!
-      this.refs.listView.scrollTo({
-         y: layout.height,
-         animated: false,
-      })
-   };
 
 	render() {
 		let {style, isFutureDate} = this.props;
@@ -282,13 +259,11 @@ export default class Calendar extends React.Component {
 
 		return (
 			<ListView
-            ref={"listView"}
 				showsVerticalScrollIndicator={false}
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}
 				style={[styles.listViewContainer, directionStyles, style]}
 				dataSource={this.state.dataSource}
-            onLayout={this.onLayout}
 				renderRow={(month) => {
 					return (
 						<Month

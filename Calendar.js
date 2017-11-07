@@ -259,11 +259,15 @@ export default class Calendar extends React.Component {
 
 		return (
 			<ListView
+            ref={"scrollView"}
 				showsVerticalScrollIndicator={false}
 				initialListSize={5}
 				scrollRenderAheadDistance={1200}
 				style={[styles.listViewContainer, directionStyles, style]}
 				dataSource={this.state.dataSource}
+            onContentSizeChange={(contentWidth, contentHeight)=>{
+               this.refs.scrollView.scrollTo(contentHeight);
+            }}
 				renderRow={(month) => {
 					return (
 						<Month
